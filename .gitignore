@@ -13,3 +13,4 @@ firestore.rules.backup
 *.aab
 *.jks
 *.keystore
+*.log
