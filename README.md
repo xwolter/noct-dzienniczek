@@ -57,6 +57,7 @@ Działa z każdą uczelnią, która udostępnia USOS API (UW, UJ, PW, PWr, UAM, 
 - **Powrót z logowania jest sprawdzany:** aplikacja przyjmuje tylko link z tym samym tokenem, który sama wysłała, więc obca strona ani aplikacja nie podsunie jej cudzego logowania.
 - **Tokeny nie trafiają do kopii w chmurze Google** ani do przenoszenia na nowy telefon (`allowBackup=false`, reguły w `res/xml/data_rules.xml`).
 - **Reguły Firestore** ([`firestore.rules`](firestore.rules)): każdy widzi tylko swój dokument. W grupie roku terminy widzą tylko członkowie, autor wpisu nie da się podmienić, usunąć termin może tylko osoba, która go dodała, a pola mają limity długości.
+- Reguły mają testy na emulatorze Firestore: [`firebase-tests/rules.test.mjs`](firebase-tests/rules.test.mjs).
 - **Kody grup** mają 8 losowych znaków z 32 (`SecureRandom`), czyli ponad bilion kombinacji. Grup nie da się wylistować.
 
 ## Klucz USOS API
