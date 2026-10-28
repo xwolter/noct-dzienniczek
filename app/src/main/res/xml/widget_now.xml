@@ -1,0 +1,11 @@
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="250dp" android:minHeight="180dp"
+    android:targetCellWidth="4" android:targetCellHeight="3"
+    android:minResizeWidth="110dp" android:minResizeHeight="50dp"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:updatePeriodMillis="1800000"
+    android:description="@string/w_now_d"
+    android:initialLayout="@layout/glance_default_loading_layout"
+    android:previewLayout="@layout/wp_now"
+    android:widgetFeatures="reconfigurable" />

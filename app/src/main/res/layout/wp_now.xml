@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/wbg_card" android:padding="18dp">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TERAZ · LABORATORIUM · do 11:30" android:textColor="@color/blue" android:textSize="12sp" android:textStyle="bold"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Bazy danych" android:textColor="@color/ink" android:textSize="19sp" android:textStyle="bold"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="s. 2.14 · Budynek C · gr. 3" android:textColor="@color/sub" android:textSize="13sp"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:text="mgr Ewa Zielińska" android:textColor="@color/sub" android:textSize="12sp"/>
+    <FrameLayout android:layout_width="match_parent" android:layout_height="6dp" android:layout_marginTop="8dp" android:background="@drawable/wbg_track">
+        <FrameLayout android:layout_width="40dp" android:layout_height="match_parent" android:background="@drawable/wbg_blue"/>
+    </FrameLayout>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="POTEM" android:textColor="@color/sub" android:textSize="11sp" android:textStyle="bold"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="12:00  Programowanie obiektowe" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="s. 3.02 · Ćwiczenia · dr Piotr Wiśniewski" android:textColor="@color/sub" android:textSize="12sp"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="15:15  Język angielski B2" android:textColor="@color/ink" android:textSize="13sp" android:textStyle="bold"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="s. 1.08 · Lektorat · mgr Anna Lis" android:textColor="@color/sub" android:textSize="12sp"/>
+</LinearLayout>

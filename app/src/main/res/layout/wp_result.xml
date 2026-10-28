@@ -1,0 +1,6 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/wbg_card" android:padding="18dp" android:gravity="bottom">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NOWY WYNIK" android:textColor="@color/green" android:textSize="12sp" android:textStyle="bold"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="23/25" android:textColor="@color/ink" android:textSize="32sp" android:textStyle="bold"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Algorytmy · kolokwium 1" android:textColor="@color/sub" android:textSize="13sp"/>
+</LinearLayout>

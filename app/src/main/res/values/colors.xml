@@ -1,0 +1,9 @@
+<resources>
+    <color name="bg">#F4F5F7</color>
+    <color name="blue">#2F6BFF</color>
+    <color name="ink">#111318</color>
+    <color name="card">#DBFFFFFF</color>
+    <color name="sub">#6B6F7A</color>
+    <color name="red">#E04B5A</color>
+    <color name="green">#1E9E57</color>
+</resources>

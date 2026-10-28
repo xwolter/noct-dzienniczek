@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function superAdmin() { return signedIn() && exists(/databases/$(database)/documents/config/access) && get(/databases/$(database)/documents/config/access).data.superAdminUid == request.auth.uid; }
+    function member(groupId) { return signedIn() && exists(/databases/$(database)/documents/groups/$(groupId)/members/$(request.auth.uid)); }
+    // The bootstrap UID is set ONLY in Firebase Console / Admin SDK.
+    match /config/access { allow read: if signedIn(); allow write: if false; }
+    match /users/{userId}/groups/{groupId} { allow read: if signedIn() && request.auth.uid == userId; allow write: if false; }
+    match /groups/{groupId} {
+      allow read: if superAdmin() || member(groupId);
+      allow write: if false;
+      match /members/{userId} { allow read: if superAdmin() || member(groupId); allow write: if false; }
+      match /events/{eventId} { allow read: if superAdmin() || member(groupId); allow write: if false; }
+      match /tasks/{id} { allow read: if superAdmin() || member(groupId); allow write: if false; }
+      match /materials/{id} { allow read: if superAdmin() || member(groupId); allow write: if false; }
+      match /history/{id} { allow read: if superAdmin() || member(groupId); allow write: if false; }
+    }
+    // USOS Student: każdy użytkownik widzi i zapisuje tylko swój dokument.
+    match /usosStudent/{uid} { allow read, write: if request.auth != null && request.auth.uid == uid; }
+    // Noct Dzienniczek: wspólne terminy grupy. Grupę zna tylko ten, kto ma kod (brak listowania).
+    function usosMember(code) { return signedIn() && exists(/databases/$(database)/documents/usosGroups/$(code)/members/$(request.auth.uid)); }
+    match /usosGroups/{code} {
+      allow get: if signedIn();
+      allow create: if signedIn() && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.keys().hasOnly(['name', 'createdBy', 'createdAt']) && request.resource.data.name is string && request.resource.data.name.size() <= 40;
+      allow update, delete: if false;
+      match /members/{uid} {
+        allow read: if usosMember(code);
+        allow create, update: if signedIn() && request.auth.uid == uid && exists(/databases/$(database)/documents/usosGroups/$(code))
+          && request.resource.data.keys().hasOnly(['name', 'joinedAt'])
+          && request.resource.data.name is string && request.resource.data.name.size() <= 60;
+        allow delete: if signedIn() && request.auth.uid == uid;
+      }
+      match /exams/{id} {
+        function validExam(d) {
+          return d.keys().hasOnly(['kind', 'courseId', 'courseName', 'date', 'time', 'room', 'note', 'authorUid', 'author', 'updatedAt'])
+            && (!('courseName' in d) || (d.courseName is string && d.courseName.size() <= 200))
+            && (!('room' in d) || (d.room is string && d.room.size() <= 100))
+            && (!('note' in d) || (d.note is string && d.note.size() <= 1000))
+            && (!('author' in d) || (d.author is string && d.author.size() <= 60));
+        }
+        allow read: if usosMember(code);
+        allow create: if usosMember(code) && request.resource.data.authorUid == request.auth.uid && validExam(request.resource.data);
+        // Edytować może każdy z grupy, ale autor wpisu zostaje ten sam (bez podszywania się pod kogoś).
+        allow update: if usosMember(code) && validExam(request.resource.data)
+          && request.resource.data.authorUid == resource.data.authorUid
+          && request.resource.data.get('author', '') == resource.data.get('author', '');
+        allow delete: if usosMember(code) && resource.data.authorUid == request.auth.uid;
+      }
+    }
+    // Membership, roles, invites and event writes go through authenticated callable functions.
+    match /{document=**} { allow read, write: if false; }
+  }
+}

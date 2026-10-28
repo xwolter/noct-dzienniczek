@@ -1,0 +1,15 @@
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+.kotlin/
+# konfiguracja Firebase i klucze zostają lokalnie
+app/google-services.json
+firestore.rules.backup
+.firebaserc
+# gotowe pliki idą do wydań
+*.apk
+*.aab
+*.jks
+*.keystore

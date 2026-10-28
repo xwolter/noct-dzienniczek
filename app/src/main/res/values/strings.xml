@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Noct Dzienniczek</string>
+    <string name="author">xwolter</string>
+    <string name="w_now">Teraz · zajęcia</string>
+    <string name="w_week">Ten tydzień</string>
+    <string name="w_result">Nowy wynik</string>
+    <string name="w_exam">Odliczanie do kolokwium</string>
+    <string name="w_forecast">Prognoza średniej</string>
+    <string name="w_now_d">Bieżące zajęcia z postępem i kolejnymi zajęciami</string>
+    <string name="w_week_d">Mini-plan całego tygodnia</string>
+    <string name="w_result_d">Ostatnio dodane punkty</string>
+    <string name="w_exam_d">Ile dni do najbliższego kolokwium</string>
+    <string name="w_forecast_d">Średnia ważona ECTS liczona z punktów</string>
+</resources>
